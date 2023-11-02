@@ -11,7 +11,7 @@ import (
 func main() {
 	var sum int
 
-	file, err := os.Open("3.txt")
+	file, err := os.Open("../3.txt")
 	if err != nil {
 		log.Fatal("Error opening the file")
 	}
