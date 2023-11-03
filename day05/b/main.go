@@ -18,6 +18,10 @@ func (s *stack) push(v string) {
 	*s = append(*s, v)
 }
 
+func (s *stack) pushSlice(v []string) {
+	*s = append(*s, v...)
+}
+
 func (s *stack) pop() string {
 	l := len(*s)
 	if l == 0 {
@@ -88,7 +92,15 @@ func instantiateStacks(n int) {
 	}
 }
 func evaluateInstructions(inst1, inst2, inst3 int) {
+	var auxSlice []string
 	for i := 0; i < inst1; i++ {
-		stacks[inst3-1].push(stacks[inst2-1].pop())
+		if inst1 > 1 {
+			auxSlice = append([]string{stacks[inst2-1].pop()}, auxSlice...)
+		} else {
+			stacks[inst3-1].push(stacks[inst2-1].pop())
+		}
+	}
+	if inst1 > 1 {
+		stacks[inst3-1].pushSlice(auxSlice)
 	}
 }
