@@ -17,6 +17,7 @@ func main() {
 		log.Fatal("Error opening the file")
 	}
 
+	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		counter += checkPair(scanner.Text())
