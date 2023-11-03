@@ -36,7 +36,6 @@ func main() {
 	if err != nil {
 		log.Fatal("Error opening the file")
 	}
-
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() && scanner.Text() != "" {
@@ -76,11 +75,7 @@ func checkStackNumber(path string) {
 	defer file.Close()
 	for scanner.Scan() && scanner.Text() != "" {
 		if line := string(scanner.Text()); string(line[1]) == "1" {
-			n, err := strconv.Atoi(string(line[len(line)-2]))
-			instantiateStacks(n)
-			if err != nil {
-				log.Fatal("Error declaring the number of stacks")
-			}
+			instantiateStacks(len(strings.Split(line, " ")) / 3)
 		}
 	}
 }
@@ -90,7 +85,6 @@ func instantiateStacks(n int) {
 		stacks = append(stacks, stack{})
 	}
 }
-
 func evaluateInstructions(inst1, inst2, inst3 int) {
 	for i := 0; i < inst1; i++ {
 		stacks[inst3-1].push(stacks[inst2-1].pop())
