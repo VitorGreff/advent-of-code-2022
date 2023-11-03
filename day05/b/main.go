@@ -35,7 +35,6 @@ func (s *stack) pop() string {
 func main() {
 	var path string = "../5.txt"
 	checkStackNumber(path)
-
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal("Error opening the file")
