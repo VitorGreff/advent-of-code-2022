@@ -11,7 +11,6 @@ import (
 
 func main() {
 	var counter uint = 0
-
 	file, err := os.Open("../4.txt")
 	if err != nil {
 		log.Fatal("Error opening the file")
